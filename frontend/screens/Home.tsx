@@ -33,12 +33,12 @@ const Home: React.FC<IHome> = ({ navigation }) => {
         </View>
       </View>
 
-      {/* <Button
+      <Button
         onPress={() => navigation.navigate("Products")}
         title="See More"
         color="#841584"
         accessibilityLabel="Learn more about our products"
-      /> */}
+      />
     </SafeAreaView>
   );
 };
