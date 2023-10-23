@@ -1,29 +1,22 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Home, Products } from "./frontend/screens";
 import { useFonts } from "expo-font";
-
-const Stack = createNativeStackNavigator();
+import AppNavigator from "./navigation/AppNavigator";
 
 const App = () => {
   const [loaded] = useFonts({
-    PlayfairBlack: require("./assets/fonts/PlayfairDisplay-Black.ttf"),
-    PlayfairReg: require("./assets/fonts/PlayfairDisplay-Regular.ttf"),
+    PlayfairBlack: require("./frontend/assets/fonts/PlayfairDisplay-Black.ttf"),
+    PlayfairReg: require("./frontend/assets/fonts/PlayfairDisplay-Regular.ttf"),
+    ProximaNovaBlack: require("./frontend/assets/fonts/ProximaNova-Black.ttf"),
+    ProximaNovaReg: require("./frontend/assets/fonts/ProximaNova-Regular.ttf"),
   });
 
   if (!loaded) {
     return null;
   }
+
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Products" component={Products} />
-      </Stack.Navigator>
+      <AppNavigator />
     </NavigationContainer>
   );
 };
