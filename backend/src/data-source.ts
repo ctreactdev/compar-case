@@ -1,6 +1,5 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./entity/User";
 import { Products } from "./entity/Product"
 
 export const AppDataSource = new DataSource({
@@ -15,7 +14,7 @@ export const AppDataSource = new DataSource({
     entities: [Products],
     migrations: [],
     subscribers: [],
-    // https://stackoverflow.com/questions/56660312/cannot-connect-an-ssl-secured-database-to-typeorm - If you connect an SSL certification to this it should run no problem. For now I just removed the rejection
+    // https://stackoverflow.com/questions/76899023/rds-while-connection-error-no-pg-hba-conf-entry-for-host
     "ssl": true,
     "extra": {
     "ssl": {
