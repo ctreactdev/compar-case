@@ -107,12 +107,12 @@ const styles = StyleSheet.create({
     marginBottom: 13,
   },
   h1: {
-    paddingRight: 37.5,
+    paddingRight: 75,
     width: "100%",
     textAlign: "center",
     height: 37,
     color: "#000",
-    fontFamily: "ProximaNovaReg",
+    fontFamily: "PlayfairBlack",
     fontStyle: "normal",
     lineHeight: 24,
     fontSize: 22,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   h2: {
     color: "#000",
-    fontFamily: "ProximaNovaReg",
+    fontFamily: "PlayfairBlack",
     fontSize: 16,
     fontWeight: "700",
     letterSpacing: -0.24,
