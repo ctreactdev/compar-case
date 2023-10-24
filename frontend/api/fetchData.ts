@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 const api = axios.create({
-  baseURL: "https://api.example.com",
+  baseURL: "http://192.168.1.114:3000/",
 });
 
 export const fetchData = async (endpoint: string): Promise<any> => {

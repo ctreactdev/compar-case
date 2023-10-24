@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -9,12 +10,50 @@ import {
   Pressable,
 } from "react-native";
 import { ProductCard } from "../components";
-
+import { fetchData } from "../api";
+import { RootStackParamList } from "../../navigation/RootStackParamList";
+import { StackNavigationProp } from "@react-navigation/stack";
 interface IProducts {
-  navigation: any;
+  navigation: StackNavigationProp<RootStackParamList, "Home">;
+}
+interface IProductData {
+  brand: string;
+  category: string;
+  description: string;
+  image_url: string;
+  ingredients: string;
+  price: number;
+  product_id: number;
+  product_name: string;
 }
 
 const Products: React.FC<IProducts> = ({ navigation }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData("products")
+      .then((response) => {
+        setData(response);
+      })
+      .catch((error) => {
+        console.error("API Error:", error);
+      });
+  }, []);
+  const products: IProductData[] = data;
+
+  const categoryToFilterConditioner = "Balsam";
+  const categoryToFilterShampoo = "Hårshampoo";
+
+  const filteredShampoo = products.filter(
+    (product) => product.category === categoryToFilterShampoo
+  );
+  const filteredConditioner = products.filter(
+    (product) => product.category === categoryToFilterConditioner
+  );
+
+  const shampooArray = filteredShampoo.slice(0);
+  const conditionersArray = filteredConditioner.slice(0);
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -23,7 +62,7 @@ const Products: React.FC<IProducts> = ({ navigation }) => {
           <View style={styles.header}>
             <Pressable
               style={styles.backButtonWrap}
-              onPress={() => navigation.navigate("Home", { screen: "Home" })}
+              onPress={() => navigation.navigate("Home")}
               accessibilityLabel="Learn more about our products"
             >
               <Image
@@ -36,20 +75,17 @@ const Products: React.FC<IProducts> = ({ navigation }) => {
           <View style={styles.h2Wrap}>
             <Text style={styles.h2}>Shampoos</Text>
           </View>
+
           <View style={styles.shampoosCards}>
-            <ProductCard isFrontPageGap={false} />
-            <ProductCard isFrontPageGap={false} />
-            <ProductCard isFrontPageGap={false} />
-            <ProductCard isFrontPageGap={false} />
+            <ProductCard productData={shampooArray} isFrontPage={false} />
           </View>
+
           <View style={styles.h2Wrap}>
             <Text style={styles.h2}>Conditioners</Text>
           </View>
+
           <View style={styles.shampoosCards}>
-            <ProductCard isFrontPageGap={false} />
-            <ProductCard isFrontPageGap={false} />
-            <ProductCard isFrontPageGap={false} />
-            <ProductCard isFrontPageGap={false} />
+            <ProductCard productData={conditionersArray} isFrontPage={false} />
           </View>
         </View>
       </ScrollView>
@@ -72,19 +108,16 @@ const styles = StyleSheet.create({
   },
   h1: {
     paddingTop: 4,
-    display: "flex",
-    width: "100%",
+    paddingLeft: 60,
     height: 37,
-    flexDirection: "column",
     color: "#000",
-    textAlign: "center",
     fontFamily: "ProximaNovaReg",
     fontSize: 22,
     fontWeight: "700",
   },
   h2Wrap: {
     marginLeft: 15,
-    height: 44,
+    height: 52,
     width: "100%",
   },
   h2: {
@@ -93,18 +126,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
   },
-  backButtonWrap: {
-    position: "absolute",
-    backgroundColor: "transparent",
-    color: "transparent",
+  backButtonWrap: {},
+  backButton: {
     width: 45,
     height: 45,
+    flexShrink: 0,
   },
-  backButton: {},
   shampoosCards: {
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "row",
     marginLeft: 15,
   },
 });

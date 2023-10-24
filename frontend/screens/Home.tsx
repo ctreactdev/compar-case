@@ -22,7 +22,7 @@ const Home: React.FC<IHome> = ({ navigation }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchData("/endpoint")
+    fetchData("products")
       .then((response) => {
         setData(response);
       })
@@ -30,30 +30,28 @@ const Home: React.FC<IHome> = ({ navigation }) => {
         console.error("API Error:", error);
       });
   }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <StatusBar style="auto" />
 
         <View style={styles.header}>
-          <View style={styles.logowrap}>
+          <View>
             <Text style={styles.logo}>compar</Text>
           </View>
 
           <View style={styles.headerIcons}>
-            <View style={styles.bellWrap}>
-              <Image
-                style={styles.bellIcon}
-                source={require("../assets/icons/NotificationsBell.png")}
-                accessibilityLabel="notifications"
-              />
-            </View>
-            <View style={styles.snapshotWrap}>
-              <Image
-                style={styles.snapshotIcon}
-                source={require("../assets/icons/Snapshot.png")}
-              />
-            </View>
+            <Image
+              style={styles.bellIcon}
+              source={require("../assets/icons/NotificationsBell.png")}
+              accessibilityLabel="notifications"
+            />
+
+            <Image
+              style={styles.snapshotIcon}
+              source={require("../assets/icons/Snapshot.png")}
+            />
           </View>
         </View>
 
@@ -68,11 +66,12 @@ const Home: React.FC<IHome> = ({ navigation }) => {
           </Pressable>
         </View>
 
-        <ScrollView horizontal style={styles.yourProducts}>
-          <ProductCard isFrontPageGap={true} />
-          <ProductCard isFrontPageGap={true} />
-          <ProductCard isFrontPageGap={true} />
-          <ProductCard isFrontPageGap={true} />
+        <ScrollView
+          horizontal
+          style={styles.yourProducts}
+          showsHorizontalScrollIndicator={false}
+        >
+          <ProductCard isFrontPage={true} productData={data} />
         </ScrollView>
 
         <View style={styles.trending}>
@@ -118,7 +117,6 @@ const styles = StyleSheet.create({
   header: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
     height: 48,
     flexDirection: "row",
     marginLeft: 16,
@@ -129,38 +127,25 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
   },
-  logowrap: {
-    display: "flex",
-    width: 96,
-    height: 35.39,
-  },
   logo: {
     color: "#8E6F56",
     textAlign: "center",
     fontFamily: "PlayfairBlack",
-    fontSize: 26,
+    fontSize: 27,
     fontStyle: "normal",
     fontWeight: "700",
-    lineHeight: 30,
-  },
-  bellWrap: {
-    width: 25,
-    height: 25,
-    paddingTop: 2,
-    paddingBottom: 2,
-    paddingLeft: 3,
-    justifyContent: "center",
-    alignItems: "center",
-    flexShrink: 0,
   },
   bellIcon: {
     width: 25,
     height: 25,
     flexShrink: 0,
-    marginRight: 15,
+    marginRight: 17,
   },
-  snapshotWrap: {},
-  snapshotIcon: {},
+  snapshotIcon: {
+    width: 50,
+    height: 50,
+    flexShrink: 0,
+  },
 
   ProductsWrap: {
     display: "flex",
@@ -188,7 +173,7 @@ const styles = StyleSheet.create({
   yourProducts: {
     marginLeft: 15,
     marginRight: 15,
-    marginBottom: 20,
+    marginBottom: 35,
   },
   trending: {
     marginLeft: 15,
