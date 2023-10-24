@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     lineHeight: 14.4,
     fontStyle: "normal",
     letterSpacing: 0.24,
+    fontFamily: "ProximaNovaReg",
   },
   description: {
     marginTop: 4,
@@ -145,6 +146,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "300",
     fontStyle: "normal",
+    fontFamily: "ProximaNovaReg",
   },
   priceProcentageSale: {
     position: "absolute",
@@ -160,6 +162,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     fontSize: 12,
     fontWeight: "600",
+    fontFamily: "ProximaNovaReg",
   },
   procentageSaleWrap: {
     position: "relative",
@@ -169,7 +172,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 20,
     width: 70,
-
     marginTop: 6.53,
     marginBottom: 9,
     marginRight: 14.18,
