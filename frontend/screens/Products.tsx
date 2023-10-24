@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   header: {
     display: "flex",
-    alignItems: "center",
+    paddingTop: 13,
     height: 48,
     flexDirection: "row",
     marginLeft: 14,
@@ -107,11 +107,14 @@ const styles = StyleSheet.create({
     marginBottom: 13,
   },
   h1: {
-    paddingTop: 4,
-    paddingLeft: 60,
+    paddingRight: 37.5,
+    width: "100%",
+    textAlign: "center",
     height: 37,
     color: "#000",
     fontFamily: "ProximaNovaReg",
+    fontStyle: "normal",
+    lineHeight: 24,
     fontSize: 22,
     fontWeight: "700",
   },
@@ -125,11 +128,17 @@ const styles = StyleSheet.create({
     fontFamily: "ProximaNovaReg",
     fontSize: 16,
     fontWeight: "700",
+    letterSpacing: -0.24,
+    fontStyle: "normal",
+    lineHeight: 24,
   },
-  backButtonWrap: {},
-  backButton: {
+  backButtonWrap: {
     width: 45,
     height: 45,
+  },
+  backButton: {
+    width: 22.5,
+    height: 22.5,
     flexShrink: 0,
   },
   shampoosCards: {
