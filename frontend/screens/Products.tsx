@@ -108,12 +108,9 @@ const styles = StyleSheet.create({
   },
   h1: {
     paddingTop: 4,
-    display: "flex",
-    width: "100%",
+    paddingLeft: 60,
     height: 37,
-    flexDirection: "column",
     color: "#000",
-    textAlign: "center",
     fontFamily: "ProximaNovaReg",
     fontSize: 22,
     fontWeight: "700",
@@ -129,13 +126,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
   },
-  backButtonWrap: {
-    position: "absolute",
-    flexShrink: 0,
+  backButtonWrap: {},
+  backButton: {
     width: 45,
     height: 45,
+    flexShrink: 0,
   },
-  backButton: {},
   shampoosCards: {
     marginLeft: 15,
   },

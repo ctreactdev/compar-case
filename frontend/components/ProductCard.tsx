@@ -27,28 +27,7 @@ const ProductCard: React.FC<IProductCard> = ({ isFrontPage, productData }) => {
   return (
     <View style={styles.productsContainer}>
       {productData.map((product: IProductData, index) => {
-        // const descriptionWordCap: string = product.description
-        //   .split(/\s+/)
-        //   .reduce(
-        //     (result, word) =>
-        //       result.length + word.length + 1 <= 35
-        //         ? `${result} ${word}`
-        //         : result,
-        //     ""
-        //   )
-        //   .trim();
-
-        // const nameWordCap: string = product.product_name
-        //   .split(/\s+/)
-        //   .reduce(
-        //     (result, word) =>
-        //       result.length + word.length + 1 <= 20
-        //         ? `${result} ${word}`
-        //         : result,
-        //     ""
-        //   )
-        //   .trim();
-        function getFirstNCharacters(input: string, limit: number): string {
+        function getCharactersByNumber(input: string, limit: number): string {
           const words = input.split(/\s+/);
           let characterCount = 0;
 
@@ -63,11 +42,11 @@ const ProductCard: React.FC<IProductCard> = ({ isFrontPage, productData }) => {
           return includedWords.join(" ").trim();
         }
 
-        const descriptionWordCap: string = getFirstNCharacters(
+        const descriptionWordCap: string = getCharactersByNumber(
           product.description,
           35
         );
-        const nameWordCap: string = getFirstNCharacters(
+        const nameWordCap: string = getCharactersByNumber(
           product.product_name,
           20
         );
