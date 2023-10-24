@@ -1,4 +1,3 @@
-import { UserController } from "./controller/UserController"
 import { ProductController } from "./controller/ProductController"
 
 
